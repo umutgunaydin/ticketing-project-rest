@@ -1,5 +1,6 @@
 package com.company.controller;
 
+import com.company.annotation.ExecutionTime;
 import com.company.dto.ResponseWrapper;
 import com.company.dto.UserDTO;
 import com.company.exception.TicketingProjectException;
@@ -24,6 +25,7 @@ public class UserController {
         this.userService = userService;
     }
 
+    @ExecutionTime
     @GetMapping
     @RolesAllowed({"Manager","Admin"})
     @Operation(summary = "Get users")
@@ -32,6 +34,7 @@ public class UserController {
         return ResponseEntity.ok(new ResponseWrapper("Users are successfully retrieved", userList, HttpStatus.OK));
     }
 
+    @ExecutionTime
     @GetMapping("/{username}")
     @RolesAllowed("Admin")
     @Operation(summary = "Get user by username")
